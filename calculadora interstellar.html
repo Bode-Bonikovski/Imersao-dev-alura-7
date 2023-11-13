@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: "Roboto Mono", monospace;
+            text-align: center;
+            background-image: url("https://miro.medium.com/v2/resize:fit:828/format:webp/1*XgfiMH4cxALEr2B9Z6esCg.jpeg");
+            background-color: #000000;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: #ffffff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #ffffff;
+            margin: 0 0 5px;
+        }
+
+        .converter {
+            margin-top: 20px;
+        }
+
+        #interstellarResult {
+            margin-top: 10px;
+        }
+    </style>
+    <title>Calculadora Interstellar</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">
+            Calculadora Interstellar
+        </h1>
+
+        <div class="converter">
+            <label for="name">Seu Nome:</label>
+            <input type="text" id="name" placeholder="Digite seu nome">
+
+            <label for="interstellarConversionType">Escolha o tipo de conversao:</label>
+            <select id="interstellarConversionType">
+                <option value="kmToLy">Quilometros para Anos-luz (KM para LY)</option>
+                <option value="lyToKm">Anos-luz para Quilometros (LY para KM)</option>
+                <option value="mToLy">Metros para Anos-luz (m para LY)</option>
+                <option value="lyToM">Anos-luz para Metros (LY para m)</option>
+            </select>
+
+            <input type="number" id="interstellarInputValue" placeholder="Insira o valor">
+            <button onclick="interstellarConverter()">Converter</button>
+
+            <p id="interstellarResult"></p>
+        </div>
+    </div>
+
+    <script>
+        function interstellarConverter() {
+            const name = document.getElementById('name').value;
+            const conversionType = document.getElementById('interstellarConversionType').value;
+            const inputValue = parseFloat(document.getElementById('interstellarInputValue').value);
+
+            let result;
+
+            switch (conversionType) {
+                case 'kmToLy':
+                    result = inputValue / 9460800000000; // Conversão de km para anos-luz
+                    break;
+                case 'lyToKm':
+                    result = inputValue * 9460800000000; // Conversão de anos-luz para km
+                    break;
+                case 'mToLy':
+                    result = inputValue / 9460800000000000; // Conversão de metros para anos-luz
+                    break;
+                case 'lyToM':
+                    result = inputValue * 9460800000000000; // Conversão de anos-luz para metros
+                    break;
+                default:
+                    result = 'Tipo de conversao nao suportado';
+            }
+
+            document.getElementById('interstellarResult').innerText = `${name}, o valor é ${result}`;
+        }
+    </script>
+</body>
+</html>
