@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: "Roboto Mono", monospace;
+            text-align: center;
+            background-image: url("https://caelum-online-public.s3.amazonaws.com/assets-imersaodev/Background.png");
+            background-color: #000000;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #ffffff;
+            margin: 0 0 5px;
+        }
+
+        .page-logo {
+            width: 200px;
+        }
+
+        .alura-logo {
+            width: 40px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        body > img {
+            margin: 0 10px;
+        }
+
+        img {
+            max-height: 250px;
+        }
+
+        .converter {
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 10px;
+        }
+    </style>
+    <title>Conversor</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">
+            Conversor Multifuncional
+        </h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-aluraflix.svg" class="page-logo" alt="">
+    </div>
+
+    <div class="converter">
+        <label for="name">Seu Nome:</label>
+        <input type="text" id="name" placeholder="Digite seu nome">
+
+        <label for="conversionType">Escolha o tipo de conversao:</label>
+        <select id="conversionType">
+            <option value="usdToBrl">Dolar para Real (USD para BRL)</option>
+            <option value="brlToUsd">Real para Dolar (BRL para USD)</option>
+            <option value="kmToLy">Quilometros para Anos-luz (KM para LY)</option>
+            <option value="lyToKm">Anos-luz para Quilometros (LY para KM)</option>
+            <option value="celsiusToFahrenheit">Celsius para Fahrenheit (°C para °F)</option>
+            <option value="celsiusToKelvin">Celsius para Kelvin (°C para K)</option>
+            <option value="brlToBitcoin">Real para Bitcoin (BRL para BTC)</option>
+            <option value="brlToEuro">Real para Euro (BRL para Euro)</option>
+            <option value="euroToBrl">Euro para Real (Euro para BRL)</option>
+        </select>
+
+        <input type="number" id="inputValue" placeholder="Insira o valor">
+        <button onclick="converter()">Converter</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function converter() {
+            const name = document.getElementById('name').value;
+            const conversionType = document.getElementById('conversionType').value;
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+
+            let result;
+
+            switch (conversionType) {
+                case 'usdToBrl':
+                    result = inputValue * 4.94; // Taxa de câmbio do dólar em BRL de 13/11/23
+                    break;
+                case 'brlToUsd':
+                    result = inputValue / 4.94; // Taxa de câmbio do dólar BRL de 13/11/23
+                    break;
+                case 'kmToLy':
+                    result = inputValue / 9461000000000000; // Conversão de km para anos-luz
+                    break;
+                case 'lyToKm':
+                    result = inputValue * 9461000000000000; // Conversão de anos-luz para km
+                    break;
+                case 'celsiusToFahrenheit':
+                    result = (inputValue * 9/5) + 32;
+                    break;
+                case 'celsiusToKelvin':
+                    result = inputValue + 273.15;
+                    break;
+                case 'brlToBitcoin':
+                    result = inputValue / 182021.52; // Taxa de câmbio do Bitcoin em BRL de 13/11/23
+                    break;
+                case 'brlToEuro':
+                    result = inputValue / 5.27; // Taxa de câmbio do Euro em BRL de 13/11/23
+                    break;
+                case 'euroToBrl':
+                    result = inputValue * 5.27; // Taxa de câmbio do Euro em BRL de 13/11/23
+                    break;
+                default:
+                    result = 'Tipo de conversao nao suportado';
+            }
+
+            document.getElementById('result').innerText = `${name}, o valor é ${result}`;
+        }
+    </script>
+</body>
+</html>
